@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+        <title>
+        </title>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        </link>
+    </head>
+    <body>
+        <div class="container" id="app">
+            {{ $data}}
+            <h4>
+                ¿ Trabajaste con Vue.js si o no?
+            </h4>
+            <div class="radio">
+                <label class="radio-inline">
+                    <!-- <input type="radio" v-model="vue.exp" value="true"> -->
+                    <input type="radio" v-bind:value="true" v-model="vue.exp">
+                        <!-- v-bind:value == :value-->
+                        si
+                    </input>
+                </label>
+                <label class="radio-inline">
+                    <!-- <input type="radio" v-model="vue.exp" value="false"> -->
+                    <input :value="false" type="radio" v-model="vue.exp">
+                        no
+                    </input>
+                </label>
+            </div>
+            <!-- el template no se muestra en el html -->
+            <template v-if="vue.exp">
+                <!-- <div class="form-group" v-if="vue.exp =='true'"> -->
+                <div class="form-group">
+                    <label for="vue_years">
+                        ¿ Años de experiencia en vuejs?
+                        <input class="form-control" type="number" v-model="vue.years">
+                        </input>
+                    </label>
+                </div>
+                <!-- -->
+                <div class="form-group" v-if="vue.years < 2">
+                    <label for="vue_years">
+                        ¿Que t motivo aprender Vue?
+                    </label>
+                    <textarea class="form-control" name="description1" rows="4" v-model="vue.description">
+                    </textarea>
+                </div>
+                <!-- -->
+                <div class="form-group" v-else="">
+                    <label for="vue_years">
+                        Cuentanos tu experiencia en Vuejs
+                    </label>
+                    <textarea class="form-control" name="description2" rows="4" v-model="vue.description">
+                    </textarea>
+                </div>
+            </template>
+            <!-- footer -->
+            <footer class="footer">
+                <p>
+                    © 2018 Franco
+                </p>
+            </footer>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+        </script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+        </script>
+        <script>
+            var vm = new Vue({
+        		el: "#app",
+        		data:{
+        			vue:{
+        				exp: null,
+        				years: 0,
+        				description: '',
+        			}
+        		}
+        	});
+        </script>
+    </body>
+</html>
